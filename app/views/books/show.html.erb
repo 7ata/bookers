@@ -1,11 +1,16 @@
-<head>
-    <title>WebCampBackendNew</title>
-    <link rel="stylesheet" media="all" href="/assets/application-d12397cbc3a266ce5a99f7b588223090c55ca04a439953bb5f9304395de93fc3.css" data-turbolinks-track="reload">
-</head>
+<head></head>
 
 <body>
-    <p><strong>Title:</strong></p>
-    <p><strong>Body:</strong></p>
-    <a class="edit_81491" href="/books/81491/edit">Edit</a>
-    <a class="back" href="/books">Back</a>
+    <p id="notice"></p>
+    <p>
+      <strong>Title:</strong><br>
+      <%= @book.title %>
+    </p>
+    <p>
+      <strong>Body:</strong><br>
+      <%= @book.body %>
+    </p>
+    
+    <%=link_to "Edit",edit_book_path(@book.id) %>
+    <%=link_to "Back",books_path %>
 </body>

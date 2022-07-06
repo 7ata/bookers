@@ -6,95 +6,42 @@
     <p id="notice"></p>
     <h1>Books</h1>
     <table>
-      <therd>
-        <tr>
-          <th>Title</th>
-          <th>Body</th>
-          <th colspan="3"></th>
-        </tr>
-      </therd>
-      <tbody>
-        <tr>
-          <td>入門Git</td>
-          <td>gitについての基本操作から内部構造まで解説してくれます</td>
-          <td>
-            <a class="show_82020" href="/books/82020">Show</a>
-          </td>
-          <td>
-            <a class="edit_82020" href="/books/82020/edit">Edit</a>
-          </td>
-          <td>
-            <a data-confirm="Are you sure?" class="destroy_82020" rel="nofollow" data-method="delete" href="/books/82020">Destroy</a>
-          </td>
-        </tr>
-        <tr>
-          <td>アルゴリズム図鑑</td>
-          <td>アルゴリズムについてカラーイラストでしっかり解説してくれます</td>
-          <td>
-            <a class="show_82021" href="/books/82021">Show</a>
-          </td>
-          <td>
-            <a class="edit_82021" href="/books/82021/edit">Edit</a>
-          </td>
-          <td>
-            <a data-confirm="Are you sure?" class="destroy_82021" rel="nofollow" data-method="delete" href="/books/82021">Destroy</a>
-          </td>
-        </tr>
-        <tr>
-          <td>達人プログラマー</td>
-          <td>プログラマ入門者は必読！</td>
-          <td>
-            <a class="show_82022" href="/books/82022">Show</a>
-          </td>
-          <td>
-            <a class="edit_82022" href="/books/82022/edit">Edit</a>
-          </td>
-          <td>
-            <a deta-confirm="Are you sure?" class="destroy_82022" rel="nofollow" deta-method="delete" href="/books/82022">Destroy</a>
-          </td>
-        </tr>
-        <tr>
-          <td>データベース実践入門</td>
-          <td>効率的なSQL文を教えてくれます</td>
-          <td>
-            <a class="show_82023" href="books/82023">Show</a>
-          </td>
-          <td>
-            <a class-"edit_82023" href="books/82023/edit">Edit</a>
-          </td>
-          <td>
-            <a deta-confirm="Are you sure?" class="destroy_82023" rel="nofollow" deta-method="derete" href="/books/82023">Destroy</a>
-          </td>
-        </tr>
-        <tr>
-          <td>星の砂</td>
-          <td>あなたに</td>
-          <td>
-            <a class="show_82024" href="books/82024">Show</a>
-          </td>
-          <td>
-            <a class="edit_82024" href="/books/82024/edit">Edit</a>
-          </td>
-          <td>
-            <a deta-confirm="Are you sure?" class="destroy_82024" rel="nofollow" deta-method="derete" href="/books/82024">Destroy</a>
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
+     <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3"></th>
+      </tr>
+     </thead>
 
+     <tbody>
+      
+     <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "Show","/books/#{book.id}" %></td>
+        <td><%= link_to "Edit", edit_book_path(book.id) %></td>
+        <td><%= link_to "Destroy", book_path(book.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+    
     <h2>New book</h2>
      <!-- form_with部分 -->
     <%= form_with model: @book do |f| %>
     
     <div class="field">
-     <label for="book_title">Title</label><br>
-     <%= f.text_field :title %><br>
+     <%= f.label :Title %><br>
+     <%= f.text_field :title %>
     </div>
     
     <div class="field">
-     <label for="book_body">Body</label><br>
-     <%= f.text_area :body %><br>
+     <%= f.label :Body %><br>
+     <%= f.text_area :body %>
     </div>
     
     <div class="actions">
